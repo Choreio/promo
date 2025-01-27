@@ -2,8 +2,13 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
         .feature-card {
-             transition: transform 0.3s ease, box-shadow 0.3s ease;
-             transform-origin: center;
+            /* The base styles for the card */
+            position: relative;  /* needed so ::before can position absolutely */
+            /* set default values for the variables so there's always something */
+            --mouse-x: 0;
+            --mouse-y: 0;  
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transform-origin: center;
          }
          .feature-card:hover {
              box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
@@ -47,20 +52,20 @@
              vertical-align: middle;
          }
          .header-left a {
-            height: 64px;
-            width: 64px;
+            height: 80px;
+            width: 80px;
             display: flex;
             flex-direction: column;
             align-items: center;
          }
          .header-left a img {
-            width: 48px;
-            height: 48px;
+            width: 60px;
+            height: 60px;
          }
             .header-left a span {
                 font-weight: bold;
-                font-size: 14px;
-                height: 16px;
+                font-size: 20px;
+                height: 24px;
                 color: var(--bs-heading-color);
             }
 
