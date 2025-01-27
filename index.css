@@ -1,0 +1,69 @@
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .feature-card {
+             transition: transform 0.3s ease, box-shadow 0.3s ease;
+             transform-origin: center;
+         }
+         .feature-card:hover {
+             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+         }
+         .feature-card:hover .icon {
+             filter: brightness(1.2);
+         }
+         .icon {
+             font-size: 40px;
+             margin-bottom: 10px;
+             transition: filter 0.3s ease;
+         }
+         .icon-star { color: gold; }
+         .icon-shield { color: #17a2b8; }
+         .icon-credit-card { color: #28a745; }
+         .icon-users { color: #ffc107; }
+         .btn-primary {
+             padding: 10px 20px;
+             font-size: 18px;
+         }
+         .theme-toggle-btn{
+            position: absolute;
+            right: 0;
+            top: 0;
+         }
+         .theme-icon {
+                font-size: 16px !important;
+         }
+         .feature-card:hover {
+             transform: perspective(1000px) rotateX(calc(var(--mouse-y, 0) * 50deg)) rotateY(calc(var(--mouse-x, 0) * 50deg));
+         }
+         .header {
+             padding: 15px;
+             display: flex;
+             justify-content: space-between;
+             align-items: center;
+         }
+         .header-left {
+             display: flex;
+             align-items: center;
+             vertical-align: middle;
+         }
+         .header-left a {
+            height: 48px;
+            width: 48px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+         }
+         .header-left a img {
+            width: 100%;
+            height: 100%;
+         }
+
+         .header-right {
+             display: flex;
+             align-items: center;
+             gap:8px;
+         }
+         .header i {
+             font-size: 24px;
+             color: var(--bs-heading-color);
+         }
