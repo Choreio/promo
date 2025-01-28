@@ -2,20 +2,30 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
         .feature-card {
+            height: 200px;
+            align-items:center;
+            justify-items: center;
             /* The base styles for the card */
-            position: relative;  /* needed so ::before can position absolutely */
             /* set default values for the variables so there's always something */
             --mouse-x: 0;
             --mouse-y: 0;  
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            transform-origin: center;
+            /*transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transform-origin: center;*/
+            overflow: visible;
          }
+         /*
          .feature-card:hover {
+            
+            transform: scale(1.05);
              box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-         }
+             
+            transform: perspective(1000px) rotateX(calc(var(--mouse-y, 0) * 50deg)) rotateY(calc(var(--mouse-x, 0) * 50deg));
+            
+            }
          .feature-card:hover .icon {
              filter: brightness(1.2);
          }
+             */
          .icon {
              font-size: 40px;
              margin-bottom: 10px;
@@ -25,21 +35,28 @@
          .icon-shield { color: #17a2b8; }
          .icon-credit-card { color: #28a745; }
          .icon-users { color: #ffc107; }
-         .btn-primary {
-             padding: 10px 20px;
-             font-size: 18px;
-         }
+
          .theme-toggle-btn{
             position: absolute;
             right: 0;
             top: 0;
+            margin: 2px 2px;
          }
          .theme-icon {
-                font-size: 16px !important;
+             font-size: 24px;
+             color: var(--bs-heading-color);
          }
-         .feature-card:hover {
-             transform: perspective(1000px) rotateX(calc(var(--mouse-y, 0) * 50deg)) rotateY(calc(var(--mouse-x, 0) * 50deg));
+         .theme-icon:hover {
+                color: var(--bs-primary);
+            }
+
+         .media-icon {
+                font-size: 24px;
+                color: var(--bs-heading-color);
          }
+        .media-icon:hover {
+            color: var(--bs-primary);
+        }
          .header {
              padding: 15px;
              display: flex;
@@ -78,3 +95,8 @@
              font-size: 32px;
              color: var(--bs-heading-color);
          }
+
+         /* Custom CSS for hover effect and slow spin */
+    .carousel-item {
+        transition: transform 2s ease-in-out; /* Slow spin effect */
+      }
