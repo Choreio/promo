@@ -212,7 +212,7 @@ document.addEventListener('touchmove', (e) => {
   if (!isDragging) return;
   currentX = e.touches[0].clientX;
   let delta = currentX - startX;
-  angle -= delta * 0.5; // adjust sensitivity
+  angle += delta * 0.5; // adjust sensitivity
   setCarouselRotation(angle);
   startX = currentX;
 });

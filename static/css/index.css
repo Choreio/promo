@@ -109,7 +109,7 @@
         width: min(100%,500px);       /* Adjust as desired */
         height: 200px;      /* Adjust as desired */
         margin: auto;  /* Center in page */
-        perspective: 1000px;
+        perspective: 10000px;
         position: relative;
         overflow: visible;  /* So 3D transforms aren't clipped */
       }
@@ -138,23 +138,24 @@
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         cursor: pointer;
+        user-select: none;
         /* Adjust these to your actual images or content */
       }
   
       /* Example of positioning 3 cards in a 3D circle */
       .card1 {
-        transform: rotateY(0deg) translateZ(300px);
+        transform: rotateY(0deg) translateZ(260px);
         background: lightcoral; /* Placeholder color */
       }
       .card2 {
-        transform: rotateY(90deg) translateZ(300px);
+        transform: rotateY(90deg) translateZ(260px);
         background: lightgreen; /* Placeholder color */
       }
       .card3 {
-        transform: rotateY(180deg) translateZ(300px);
+        transform: rotateY(180deg) translateZ(260px);
         background: lightblue;  /* Placeholder color */
       }
       .card4 {
-        transform: rotateY(270deg) translateZ(300px);
+        transform: rotateY(270deg) translateZ(260px);
         background: lightpink;  /* Placeholder color */
       }
