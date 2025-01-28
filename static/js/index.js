@@ -170,7 +170,9 @@ cards.forEach((card) => {
   card.addEventListener('mouseleave', () => {
     // Only resume auto-rotate if user is not dragging
     if (!isDragging) {
+      setTimeout(() => {
       startAutoRotate();
+      }, 5000); // slight delay to prevent sudden resume
     }
   });
 });
@@ -197,8 +199,10 @@ document.addEventListener('mousemove', (e) => {
 
 document.addEventListener('mouseup', () => {
   isDragging = false;
-  // Resume auto-rotate if user stops dragging
-  startAutoRotate();
+  setTimeout(() => {
+    // Resume auto-rotate if user stops dragging
+    startAutoRotate();
+  }, 5000); // slight delay to prevent sudden resume
 });
 
 // TOUCH EVENTS
@@ -219,7 +223,10 @@ document.addEventListener('touchmove', (e) => {
 
 document.addEventListener('touchend', () => {
   isDragging = false;
-  startAutoRotate();
+  setTimeout(() => {
+    // Resume auto-rotate if user stops dragging
+    startAutoRotate();
+  }, 5000); // slight delay to prevent sudden resume
 });
 
 const container = document.querySelector('.carousel-container');
