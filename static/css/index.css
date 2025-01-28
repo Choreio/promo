@@ -13,6 +13,7 @@
             transform-origin: center;*/
             overflow: visible;
          }
+         
          /*
          .feature-card:hover {
             
@@ -99,4 +100,61 @@
          /* Custom CSS for hover effect and slow spin */
     .carousel-item {
         transition: transform 2s ease-in-out; /* Slow spin effect */
+      }
+
+
+
+      /* Container to hold the perspective */
+    .carousel-container {
+        width: 100%;       /* Adjust as desired */
+        height: 200px;      /* Adjust as desired */
+        margin: auto;  /* Center in page */
+        perspective: 1000px;
+        position: relative;
+        overflow: visible;  /* So 3D transforms aren't clipped */
+      }
+  
+      /* The rotating carousel element */
+      #carousel3d {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transform-style: preserve-3d;
+        /* No built-in animation here because
+           we're controlling rotation in JS */
+        transition: transform 0.5s ease-out;
+      }
+  
+      /* Each card in the carousel */
+      .card3d {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        backface-visibility: hidden; /* Hide the backside when rotated */
+        background-size: cover;
+        background-position: center;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        cursor: pointer;
+        /* Adjust these to your actual images or content */
+      }
+  
+      /* Example of positioning 3 cards in a 3D circle */
+      .card1 {
+        transform: rotateY(0deg) translateZ(300px);
+        background: lightcoral; /* Placeholder color */
+      }
+      .card2 {
+        transform: rotateY(120deg) translateZ(300px);
+        background: lightgreen; /* Placeholder color */
+      }
+      .card3 {
+        transform: rotateY(240deg) translateZ(300px);
+        background: lightblue;  /* Placeholder color */
+      }
+      .card4 {
+        transform: rotateY(360deg) translateZ(300px);
+        background: lightpink;  /* Placeholder color */
       }
