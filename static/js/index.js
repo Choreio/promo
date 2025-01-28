@@ -190,7 +190,7 @@ document.addEventListener('mousemove', (e) => {
   if (!isDragging) return;
   currentX = e.clientX;
   let delta = currentX - startX;
-  angle -= delta * 0.5;  // adjust sensitivity
+  angle += delta * 0.5;  // adjust sensitivity
   setCarouselRotation(angle);
   startX = currentX;
 });

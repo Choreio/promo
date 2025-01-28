@@ -105,8 +105,8 @@
 
 
       /* Container to hold the perspective */
-    .carousel-container {
-        width: 100%;       /* Adjust as desired */
+    .carousel-container{
+        width: min(100%,500px);       /* Adjust as desired */
         height: 200px;      /* Adjust as desired */
         margin: auto;  /* Center in page */
         perspective: 1000px;
@@ -132,7 +132,7 @@
         height: 100%;
         top: 0;
         left: 0;
-        backface-visibility: hidden; /* Hide the backside when rotated */
+        backface-visibility:hidden; /* Hide the backside when rotated */
         background-size: cover;
         background-position: center;
         border-radius: 8px;
@@ -147,14 +147,14 @@
         background: lightcoral; /* Placeholder color */
       }
       .card2 {
-        transform: rotateY(120deg) translateZ(300px);
+        transform: rotateY(90deg) translateZ(300px);
         background: lightgreen; /* Placeholder color */
       }
       .card3 {
-        transform: rotateY(240deg) translateZ(300px);
+        transform: rotateY(180deg) translateZ(300px);
         background: lightblue;  /* Placeholder color */
       }
       .card4 {
-        transform: rotateY(360deg) translateZ(300px);
+        transform: rotateY(270deg) translateZ(300px);
         background: lightpink;  /* Placeholder color */
       }
