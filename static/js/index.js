@@ -240,3 +240,50 @@ function setCarouselWidth() {
 }
 window.addEventListener('resize', setCarouselWidth,true);
 setCarouselWidth();
+
+
+// -------------------------------------------------------------
+// Real Loading Bar
+const loadingBar = document.getElementById("loading-bar");
+const loadingOverlay = document.getElementById("loading-overlay");
+
+let totalResources = 0;
+let loadedResources = 0;
+
+function updateProgress() {
+  const progress = (loadedResources / totalResources) * 100;
+  loadingBar.style.width = progress + "%";
+
+  if (progress === 100) {
+    // Hide loading bar and overlay when done
+    setTimeout(() => {
+      loadingBar.style.display = "none";
+      loadingOverlay.style.display = "none";
+    }, 500); // Smooth fade out
+  }
+}
+
+// Track resource loading
+window.addEventListener("load", () => {
+  totalResources = document.images.length + 1; // Count images and page load
+  loadedResources++; // Page itself is loaded
+  updateProgress();
+
+  // Track individual image loading
+  const images = document.images;
+  for (const img of images) {
+    if (img.complete) {
+      loadedResources++;
+      updateProgress();
+    } else {
+      img.addEventListener("load", () => {
+        loadedResources++;
+        updateProgress();
+      });
+      img.addEventListener("error", () => {
+        loadedResources++;
+        updateProgress();
+      });
+    }
+  }
+});
