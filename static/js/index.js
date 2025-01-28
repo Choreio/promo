@@ -221,3 +221,15 @@ document.addEventListener('touchend', () => {
   isDragging = false;
   startAutoRotate();
 });
+
+const container = document.querySelector('.carousel-container');
+function setCarouselWidth() {
+  const rect = container.getBoundingClientRect();
+  
+  // Ensure it's capped at 500
+  const pxVal = Math.min(rect.width, 500);
+  console.log(pxVal);
+  container.style.setProperty('--carousel-width', pxVal + 'px');
+}
+window.addEventListener('resize', setCarouselWidth,true);
+setCarouselWidth();

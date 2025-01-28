@@ -106,7 +106,7 @@
 
       /* Container to hold the perspective */
     .carousel-container{
-        width: min(100%,500px);       /* Adjust as desired */
+        width: 100%;  
         height: 200px;      /* Adjust as desired */
         margin: auto;  /* Center in page */
         perspective: 10000px;
@@ -116,8 +116,9 @@
   
       /* The rotating carousel element */
       #carousel3d {
-        width: 100%;
+        width: var(--carousel-width);
         height: 100%;
+        margin: auto;
         position: relative;
         transform-style: preserve-3d;
         /* No built-in animation here because
@@ -144,18 +145,18 @@
   
       /* Example of positioning 3 cards in a 3D circle */
       .card1 {
-        transform: rotateY(0deg) translateZ(260px);
+        transform: rotateY(0deg) translateZ(calc(var(--carousel-width) / 1.9));
         background: lightcoral; /* Placeholder color */
       }
       .card2 {
-        transform: rotateY(90deg) translateZ(260px);
+        transform: rotateY(90deg) translateZ(calc(var(--carousel-width) / 1.9));
         background: lightgreen; /* Placeholder color */
       }
       .card3 {
-        transform: rotateY(180deg) translateZ(260px);
+        transform: rotateY(180deg) translateZ(calc(var(--carousel-width) / 1.9));
         background: lightblue;  /* Placeholder color */
       }
       .card4 {
-        transform: rotateY(270deg) translateZ(260px);
+        transform: rotateY(270deg) translateZ(calc(var(--carousel-width) / 1.9));
         background: lightpink;  /* Placeholder color */
       }
