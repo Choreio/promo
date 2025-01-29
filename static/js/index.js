@@ -446,14 +446,20 @@ let loadedResources = 0;
 
 function updateProgress() {
   const progress = (loadedResources / totalResources) * 100;
-  loadingBar.style.width = progress + '%';
+
+  // Set horizontal bar widths
+  document.getElementById('loading-bar-top').style.width = progress + '%';
+  document.getElementById('loading-bar-bottom').style.width = progress + '%';
+
+  // Set vertical bar heights
+  document.getElementById('loading-bar-left').style.height = progress + '%';
+  document.getElementById('loading-bar-right').style.height = progress + '%';
 
   if (progress === 100) {
-    // Hide loading bar and overlay when done
+    // Hide loading frame when fully loaded
     setTimeout(() => {
-      loadingBar.style.display = 'none';
-      loadingOverlay.style.display = 'none';
-    }, 500); // Smooth fade out
+      document.getElementById('loading-overlay').style.display = 'none';
+    }, 500);
   }
 }
 
@@ -461,6 +467,7 @@ function updateProgress() {
 window.addEventListener('load', () => {
   totalResources = document.images.length + 1; // Count images and page load
   loadedResources++; // Page itself is loaded
+
   updateProgress();
 
   // Track individual image loading

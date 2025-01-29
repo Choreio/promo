@@ -191,22 +191,47 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: black;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 1); /* Optional background */
   z-index: 9998;
   display: flex;
   flex-direction: column;
+  justify-items: center;
   justify-content: center;
   align-items: center;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: white;
 }
-#loading-bar {
-  width: 0;
+
+#loading-bar-top,
+#loading-bar-bottom {
+  position: absolute;
+  left: 0;
+  width: 0%;
   height: 5px;
-  background-color: whitesmoke; /* Bootstrap primary color */
-  margin-top: 10px;
-  transition: width 0.2s ease;
+  background: whitesmoke; /* Green progress bar */
+}
+
+#loading-bar-top {
+  top: 0;
+}
+
+#loading-bar-bottom {
+  bottom: 0;
+}
+
+#loading-bar-left,
+#loading-bar-right {
+  position: absolute;
+  top: 0;
+  height: 0%;
+  width: 5px;
+  background: whitesmoke;
+}
+
+#loading-bar-left {
+  left: 0;
+}
+
+#loading-bar-right {
+  right: 0;
 }
