@@ -161,27 +161,27 @@ body {
 
 /* Example of positioning 3 cards in a 3D circle */
 .card1 {
-  transform: rotateY(0deg)
+  transform: rotateY(10deg)
     translateZ(calc(var(--carousel-width) / var(--gap-divider)));
   background: lightcoral; /* Placeholder color */
 }
 .card2 {
-  transform: rotateY(72deg)
+  transform: rotateY(82deg)
     translateZ(calc(var(--carousel-width) / var(--gap-divider)));
   background: lightgreen; /* Placeholder color */
 }
 .card3 {
-  transform: rotateY(144deg)
+  transform: rotateY(154deg)
     translateZ(calc(var(--carousel-width) / var(--gap-divider)));
   background: lightblue; /* Placeholder color */
 }
 .card4 {
-  transform: rotateY(216deg)
+  transform: rotateY(226deg)
     translateZ(calc(var(--carousel-width) / var(--gap-divider)));
   background: lightpink; /* Placeholder color */
 }
 .card5 {
-  transform: rotateY(288deg)
+  transform: rotateY(298deg)
     translateZ(calc(var(--carousel-width) / var(--gap-divider)));
   background: lightseagreen; /* Placeholder color */
 }

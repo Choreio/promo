@@ -367,28 +367,34 @@ cards.forEach((card, index) => {
 
 function centerCard(cardIndex) {
   //console.log('Centering card', cardIndex);
-  stopAutoRotate(); // Stop auto-rotation while centering
+  stopAutoRotate(5000); // Stop auto-rotation while centering
 
   //console.log('Current carousel angle', angle);
   // Calculate the target angle for the clicked card
   const totalCards = cards.length;
   const angleStep = 360 / totalCards; // Angle difference between each card
-  const targetAngle = -cardIndex * angleStep;
+  const targetAngle = -cardIndex * angleStep - 10;
   //console.log('Card', cardIndex, 'Target angle', targetAngle);
 
   // Find the nearest equivalent center angle
-  const modAngle = angle % -360; // Normalize angle within -360-0 range
-  const baseAngle = angle - modAngle; // Base full rotation
+  const modAngle = angle % 360; // Normalize angle within 360 range
+  var baseAngle = (angle - modAngle) / 360; // Base full rotation
+  if (modAngle < -180) {
+    baseAngle -= 1;
+  }
+  if (modAngle > 180) {
+    baseAngle += 1;
+  }
   //console.log('Card', cardIndex, 'Normalized angle', modAngle);
   //console.log('Card', cardIndex, 'Base angle', baseAngle);
 
-  let closestAngle = baseAngle + targetAngle; // Default closest
+  let closestAngle = baseAngle * 360 + targetAngle; // Default closest
   //console.log('Card', cardIndex, 'Closest angle', closestAngle);
 
   // Determine shortest rotation direction
   const rotateClockwise = Math.abs(closestAngle - angle);
   //console.log('Clockwise angle', rotateClockwise);
-  const rotateCounterClockwise = Math.abs(closestAngle + 360 - angle);
+  const rotateCounterClockwise = Math.abs(closestAngle - angle + 360);
   //console.log('Counter clockwise angle', rotateCounterClockwise);
   if (rotateCounterClockwise < rotateClockwise) {
     closestAngle += 360;
