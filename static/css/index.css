@@ -3,6 +3,9 @@ body {
     background-color 0.3s ease,
     color 0.3s ease;
 }
+#main-content {
+  transition: opacity 0.5s ease-out;
+}
 .feature-card {
   height: 200px;
   align-items: center;
@@ -184,62 +187,4 @@ body {
   transform: rotateY(298deg)
     translateZ(calc(var(--carousel-width) / var(--gap-divider)));
   background: lightseagreen; /* Placeholder color */
-}
-
-/* Custom Styles for the Loading Overlay and Bar */
-/* Fullscreen Loading Screen */
-#loading-screen {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  background-color: var(--bs-body-bg);
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  font-family: Arial, sans-serif;
-  z-index: 9999;
-  transition: opacity 0.5s ease-out;
-}
-
-/* Loading Spinner */
-.loader {
-  width: 64px;
-  height: 64px;
-  animation: spin 1s linear infinite;
-  margin-bottom: 10px;
-}
-
-/* Spinner Animation */
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-/* Progress Bar Container */
-.progress-container {
-  width: 80%;
-  max-width: 300px;
-  background: #ccc;
-  border-radius: 5px;
-  overflow: hidden;
-  margin-top: 10px;
-}
-
-/* Progress Bar */
-.progress-bar {
-  width: 0%;
-  height: 10px;
-  background: #3498db;
-  transition: width 0.3s ease-in-out;
-}
-
-/* Progress Text */
-#progress-text {
-  margin-top: 5px;
-  font-size: 14px;
 }

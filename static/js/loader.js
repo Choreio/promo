@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
         setTimeout(() => {
           loadingScreen.style.display = 'none';
           mainContent.style.visibility = 'visible';
+          window.scrollTo(0, 0);
         }, 500);
       }, 300);
     }

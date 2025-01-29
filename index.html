@@ -6,14 +6,26 @@
 
     <title>Chore</title>
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
-    <link id="dark-theme-style" rel="stylesheet" />
+    <link
+      rel="preload"
+      as="image"
+      href="./static//assets/logo.png"
+      type="image/png"
+      fetchpriority="high"
+    />
+    <link rel="stylesheet" href="./static/css/loader.css" />
     <script src="./static/js/loader.js"></script>
   </head>
 
   <body id="body">
     <!-- Loading Screen -->
     <div id="loading-screen">
-      <img src="./static/assets/logo.png" alt="Chore" class="loader" />
+      <img
+        src="./static/assets/logo.png"
+        alt="Chore"
+        class="loader"
+        loading="lazy"
+      />
       <p>Loading, please wait...</p>
       <div class="progress-container">
         <div class="progress-bar" id="progress-bar"></div>
@@ -25,7 +37,7 @@
       <header class="header container">
         <div class="header-left">
           <a>
-            <img src="./static/assets/logo.png" alt="Chore" />
+            <img src="./static/assets/logo.png" alt="Chore" loading="lazy" />
             <span>Chore</span>
           </a>
         </div>
@@ -268,6 +280,7 @@
                   src="./static/assets/social_rating.jpg"
                   class="img-fluid rounded"
                   alt="AI-Powered Rating"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -307,6 +320,7 @@
                   src="./static/assets/decentralization.jpg"
                   class="img-fluid rounded"
                   alt="Decentralized & Secure"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -346,6 +360,7 @@
                   src="./static/assets/crypto.jpg"
                   class="img-fluid rounded"
                   alt="Crypto Integration"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -385,6 +400,7 @@
                   src="./static/assets/handymen.webp"
                   class="img-fluid rounded"
                   alt="Empowering Handymen"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -426,6 +442,7 @@
                 src="./static/assets/flex.jpg"
                 class="img-fluid rounded"
                 alt="Flexible Roles"
+                loading="lazy"
               />
             </div>
           </div>
@@ -462,11 +479,43 @@
       </footer>
     </div>
   </body>
-  <script src="./static/js/index.js"></script>
+  <link id="dark-theme-style" rel="stylesheet" />
   <link href="./static/css/bootstrap.min.css" rel="stylesheet" />
   <link href="./static/css/all.min.css" rel="stylesheet" />
   <link href="./static/css/index.css" rel="stylesheet" />
 
   <script src="./static/js/bootstrap.bundle.min.js"></script>
   <script src="./static/js/all.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <link
+    rel="preload"
+    as="image"
+    href="./static/assets/crypto.jpg"
+    type="image/png"
+  />
+  <link
+    rel="preload"
+    as="image"
+    href="./static/assets/decentralization.jpg"
+    type="image/png"
+  />
+  <link
+    rel="preload"
+    as="image"
+    href="./static/assets/flex.jpg"
+    type="image/png"
+  />
+  <link
+    rel="preload"
+    as="image"
+    href="./static/assets/handymen.webp"
+    type="image/png"
+  />
+  <link
+    rel="preload"
+    as="image"
+    href="./static/assets/social_rating.jpg"
+    type="image/png"
+  />
 </html>
