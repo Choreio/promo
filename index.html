@@ -6,131 +6,66 @@
 
     <title>Chore</title>
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
-
-    <link href="./static/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="./static/css/all.min.css" rel="stylesheet" />
-    <link href="./static/css/index.css" rel="stylesheet" />
-
-    <script src="./static/js/bootstrap.bundle.min.js"></script>
-    <script src="./static/js/all.min.js"></script>
-
     <link id="dark-theme-style" rel="stylesheet" />
+    <script src="./static/js/loader.js"></script>
   </head>
 
   <body id="body">
-    <div id="loading-overlay">
-      <div id="loading-bar-top"></div>
-      <div id="loading-bar-bottom"></div>
-      <div id="loading-bar-left"></div>
-      <div id="loading-bar-right"></div>
-      <img src="./static/assets/logo.png" alt="Chore" style="width: 64px" />
-      <div>Loading...</div>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+      <img src="./static/assets/logo.png" alt="Chore" class="loader" />
+      <p>Loading, please wait...</p>
+      <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+      <p id="progress-text">0%</p>
     </div>
-
-    <header class="header container">
-      <div class="header-left">
-        <a>
-          <img src="./static/assets/logo.png" alt="Chore" />
-          <span>Chore</span>
-        </a>
-      </div>
-      <div class="header-right">
-        <button class="btn">
-          <i class="fa-brands fa-telegram media-icon"></i>
+    <!-- Main Content (Hidden initially) -->
+    <div id="main-content" style="visibility: hidden">
+      <header class="header container">
+        <div class="header-left">
+          <a>
+            <img src="./static/assets/logo.png" alt="Chore" />
+            <span>Chore</span>
+          </a>
+        </div>
+        <div class="header-right">
+          <button class="btn">
+            <i class="fa-brands fa-telegram media-icon"></i>
+          </button>
+          <button class="btn">
+            <i class="fa-brands fa-twitter media-icon"></i>
+          </button>
+        </div>
+        <!-- Theme Toggle Button -->
+        <button id="theme-toggle-btn" class="btn theme-toggle-btn">
+          <i class="fas fa-moon theme-icon" id="theme-icon"></i>
         </button>
-        <button class="btn">
-          <i class="fa-brands fa-twitter media-icon"></i>
-        </button>
-      </div>
-      <!-- Theme Toggle Button -->
-      <button id="theme-toggle-btn" class="btn theme-toggle-btn">
-        <i class="fas fa-moon theme-icon" id="theme-icon"></i>
-      </button>
-    </header>
-    <div class="container py-5 text-center overflow-hidden">
-      <h1 class="mb-2">Welcome to Chore</h1>
-      <h3 class="mb-4">To the Future of Handyman Services</h3>
-      <p class="text-muted mb-5">
-        A decentralized platform connecting skilled professionals with clients,
-        powered by blockchain and AI.
-      </p>
-      <div class="mb-4">
-        <a
-          id="redirect-button"
-          href="#"
-          class="btn btn-light"
-          style="padding: 1.5rem 3.5rem; font-size: x-large"
-          >Get Started for free</a
-        >
-      </div>
+      </header>
+      <div class="container py-5 text-center overflow-hidden">
+        <h1 class="mb-2">Welcome to Chore</h1>
+        <h3 class="mb-4">To the Future of Handyman Services</h3>
+        <p class="text-muted mb-5">
+          A decentralized platform connecting skilled professionals with
+          clients, powered by blockchain and AI.
+        </p>
+        <div class="mb-4">
+          <a
+            id="redirect-button"
+            href="#"
+            class="btn btn-light"
+            style="padding: 1.5rem 3.5rem; font-size: x-large"
+            >Get Started for free</a
+          >
+        </div>
 
-      <div class="row g-4" style="display: none !important">
-        <div class="col-md-6 col-lg-3">
-          <div
-            class="card feature-card p-3 text-center"
-            onmousemove="rotateCard(event, this)"
-            onmouseleave="resetCard(this)"
-          >
-            <i class="fa-solid fa-star icon icon-star"></i>
-            <h5>AI-Powered Rating</h5>
-            <p class="text-muted">
-              Smart algorithms ensure accurate and fair reviews.
-            </p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <div
-            class="card feature-card p-3 text-center"
-            onmousemove="rotateCard(event, this)"
-            onmouseleave="resetCard(this)"
-          >
-            <i class="fa-solid fa-shield icon icon-shield"></i>
-            <h5>Decentralized & Secure</h5>
-            <p class="text-muted">
-              Built on blockchain for transparency and trust.
-            </p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <div
-            class="card feature-card p-3 text-center"
-            onmousemove="rotateCard(event, this)"
-            onmouseleave="resetCard(this)"
-          >
-            <i class="fa-regular fa-credit-card icon icon-credit-card"></i>
-            <h5>Crypto Integration</h5>
-            <p class="text-muted">
-              Seamless payments with popular cryptocurrencies.
-            </p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <div
-            class="card feature-card p-3 text-center"
-            onmousemove="rotateCard(event, this)"
-            onmouseleave="resetCard(this)"
-          >
-            <i class="fa-solid fa-people-arrows icon icon-users"></i>
-            <h5>Empowering Handymen</h5>
-            <p class="text-muted">
-              A platform designed to benefit both clients and professionals.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div
-        id="cardCarousel"
-        class="carousel slide"
-        data-bs-ride="carousel"
-        data-bs-interval="5000"
-        data-bs-pause="hover"
-        style="padding: 6px; display: none !important"
-      >
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <!-- onmousemove="rotateCard(event, this)" onmouseleave="resetCard(this)" -->
-            <div class="card feature-card p-3 text-center">
+        <div class="row g-4" style="display: none !important">
+          <div class="col-md-6 col-lg-3">
+            <div
+              class="card feature-card p-3 text-center"
+              onmousemove="rotateCard(event, this)"
+              onmouseleave="resetCard(this)"
+            >
               <i class="fa-solid fa-star icon icon-star"></i>
               <h5>AI-Powered Rating</h5>
               <p class="text-muted">
@@ -138,8 +73,12 @@
               </p>
             </div>
           </div>
-          <div class="carousel-item">
-            <div class="card feature-card p-3 text-center">
+          <div class="col-md-6 col-lg-3">
+            <div
+              class="card feature-card p-3 text-center"
+              onmousemove="rotateCard(event, this)"
+              onmouseleave="resetCard(this)"
+            >
               <i class="fa-solid fa-shield icon icon-shield"></i>
               <h5>Decentralized & Secure</h5>
               <p class="text-muted">
@@ -147,8 +86,12 @@
               </p>
             </div>
           </div>
-          <div class="carousel-item">
-            <div class="card feature-card p-3 text-center">
+          <div class="col-md-6 col-lg-3">
+            <div
+              class="card feature-card p-3 text-center"
+              onmousemove="rotateCard(event, this)"
+              onmouseleave="resetCard(this)"
+            >
               <i class="fa-regular fa-credit-card icon icon-credit-card"></i>
               <h5>Crypto Integration</h5>
               <p class="text-muted">
@@ -156,8 +99,12 @@
               </p>
             </div>
           </div>
-          <div class="carousel-item">
-            <div class="card feature-card p-3 text-center">
+          <div class="col-md-6 col-lg-3">
+            <div
+              class="card feature-card p-3 text-center"
+              onmousemove="rotateCard(event, this)"
+              onmouseleave="resetCard(this)"
+            >
               <i class="fa-solid fa-people-arrows icon icon-users"></i>
               <h5>Empowering Handymen</h5>
               <p class="text-muted">
@@ -166,302 +113,360 @@
             </div>
           </div>
         </div>
-        <!-- Carousel Controls -->
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-bs-target="#cardCarousel"
-          data-bs-slide="prev"
-        >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-bs-target="#cardCarousel"
-          data-bs-slide="next"
-        >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
 
-      <!-- 3D carousel -->
-      <div class="carousel-container mb-5">
-        <div id="carousel3d">
-          <!-- You can have as many cards as you'd like. 
+        <div
+          id="cardCarousel"
+          class="carousel slide"
+          data-bs-ride="carousel"
+          data-bs-interval="5000"
+          data-bs-pause="hover"
+          style="padding: 6px; display: none !important"
+        >
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <!-- onmousemove="rotateCard(event, this)" onmouseleave="resetCard(this)" -->
+              <div class="card feature-card p-3 text-center">
+                <i class="fa-solid fa-star icon icon-star"></i>
+                <h5>AI-Powered Rating</h5>
+                <p class="text-muted">
+                  Smart algorithms ensure accurate and fair reviews.
+                </p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="card feature-card p-3 text-center">
+                <i class="fa-solid fa-shield icon icon-shield"></i>
+                <h5>Decentralized & Secure</h5>
+                <p class="text-muted">
+                  Built on blockchain for transparency and trust.
+                </p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="card feature-card p-3 text-center">
+                <i class="fa-regular fa-credit-card icon icon-credit-card"></i>
+                <h5>Crypto Integration</h5>
+                <p class="text-muted">
+                  Seamless payments with popular cryptocurrencies.
+                </p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="card feature-card p-3 text-center">
+                <i class="fa-solid fa-people-arrows icon icon-users"></i>
+                <h5>Empowering Handymen</h5>
+                <p class="text-muted">
+                  A platform designed to benefit both clients and professionals.
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Carousel Controls -->
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#cardCarousel"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#cardCarousel"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+
+        <!-- 3D carousel -->
+        <div class="carousel-container mb-5">
+          <div id="carousel3d">
+            <!-- You can have as many cards as you'd like. 
            Just position them around the circle using rotateY(...) translateZ(...). -->
-          <div class="card3d card1">
-            <div class="card feature-card p-3 text-center">
-              <i class="fa-solid fa-star icon icon-star"></i>
-              <h5>AI-Powered Rating</h5>
-              <p class="text-muted">
-                Smart algorithms ensure accurate and fair reviews.
-              </p>
+            <div class="card3d card1">
+              <div class="card feature-card p-3 text-center">
+                <i class="fa-solid fa-star icon icon-star"></i>
+                <h5>AI-Powered Rating</h5>
+                <p class="text-muted">
+                  Smart algorithms ensure accurate and fair reviews.
+                </p>
+              </div>
+            </div>
+            <div class="card3d card2">
+              <div class="card feature-card p-3 text-center">
+                <i class="fa-solid fa-shield icon icon-shield"></i>
+                <h5>Decentralized & Secure</h5>
+                <p class="text-muted">
+                  Built on blockchain for transparency and trust.
+                </p>
+              </div>
+            </div>
+            <div class="card3d card3">
+              <div class="card feature-card p-3 text-center">
+                <i class="fa-regular fa-credit-card icon icon-credit-card"></i>
+                <h5>Crypto Integration</h5>
+                <p class="text-muted">
+                  Seamless payments with popular cryptocurrencies.
+                </p>
+              </div>
+            </div>
+            <div class="card3d card4">
+              <div class="card feature-card p-3 text-center">
+                <i class="fa-solid fa-people-arrows icon icon-users"></i>
+                <h5>Empowering Handymen</h5>
+                <p class="text-muted">
+                  A platform designed to benefit both clients and professionals.
+                </p>
+              </div>
+            </div>
+            <div class="card3d card5">
+              <div class="card feature-card p-3 text-center">
+                <i
+                  class="fa-solid fa-person-military-to-person icon icon-roles"
+                ></i>
+                <h5>Flexible Roles</h5>
+                <p class="text-muted">
+                  Everyone can be both a service provider and a client.
+                </p>
+              </div>
             </div>
           </div>
-          <div class="card3d card2">
-            <div class="card feature-card p-3 text-center">
-              <i class="fa-solid fa-shield icon icon-shield"></i>
-              <h5>Decentralized & Secure</h5>
-              <p class="text-muted">
-                Built on blockchain for transparency and trust.
-              </p>
+        </div>
+
+        <hr />
+        <!-- SECTION 1: AI-Powered Rating -->
+        <section class="py-5">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-md-6 mb-4 mb-md-0">
+                <h2 class="mb-3">AI-Powered Rating</h2>
+                <h5 class="text-muted">
+                  Smart algorithms ensure accurate and fair reviews.
+                </h5>
+                <p class="mt-4">
+                  Our platform leverages cutting-edge machine learning to
+                  analyze and moderate user feedback. By automatically detecting
+                  fraudulent or manipulated ratings, our AI ensures that every
+                  handyman or service provider gets the recognition they truly
+                  deserve. Whether you’re looking to hire someone or you’re a
+                  professional seeking fair representation, our system maintains
+                  an unbiased and transparent standard.
+                </p>
+                <ul class="mt-3">
+                  <li>Automated detection of spam and duplicate reviews.</li>
+                  <li>Weighted scoring system to favor quality feedback.</li>
+                  <li>Adaptive learning to continuously improve accuracy.</li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <!-- Example image placeholder -->
+                <img
+                  src="./static/assets/social_rating.jpg"
+                  class="img-fluid rounded"
+                  alt="AI-Powered Rating"
+                />
+              </div>
             </div>
           </div>
-          <div class="card3d card3">
-            <div class="card feature-card p-3 text-center">
-              <i class="fa-regular fa-credit-card icon icon-credit-card"></i>
-              <h5>Crypto Integration</h5>
-              <p class="text-muted">
-                Seamless payments with popular cryptocurrencies.
-              </p>
+        </section>
+
+        <hr />
+        <!-- SECTION 2: Decentralized & Secure -->
+        <section class="py-5">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-md-6 order-md-2 mb-4 mb-md-0">
+                <h2 class="mb-3">Decentralized &amp; Secure</h2>
+                <h5 class="text-muted">
+                  Built on blockchain for transparency and trust.
+                </h5>
+                <p class="mt-4">
+                  Gone are the days of centralized control. By implementing
+                  blockchain technology, we ensure that data integrity and
+                  transparency are at the core of our platform. Every job order,
+                  payment transaction, and review is immutably recorded on the
+                  ledger, giving both clients and service providers confidence
+                  that all information is accurate, unaltered, and fully
+                  verifiable.
+                </p>
+                <ul class="mt-3">
+                  <li>Immutable records for absolute integrity.</li>
+                  <li>Transparent tracking of interactions.</li>
+                  <li>
+                    Prevent tampering or alterations in reviews and ratings.
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-6 order-md-1">
+                <!-- Example image placeholder -->
+                <img
+                  src="./static/assets/decentralization.jpg"
+                  class="img-fluid rounded"
+                  alt="Decentralized & Secure"
+                />
+              </div>
             </div>
           </div>
-          <div class="card3d card4">
-            <div class="card feature-card p-3 text-center">
-              <i class="fa-solid fa-people-arrows icon icon-users"></i>
-              <h5>Empowering Handymen</h5>
-              <p class="text-muted">
-                A platform designed to benefit both clients and professionals.
-              </p>
+        </section>
+
+        <hr />
+        <!-- SECTION 3: Crypto Integration -->
+        <section class="py-5">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-md-6 mb-4 mb-md-0">
+                <h2 class="mb-3">Crypto Integration</h2>
+                <h5 class="text-muted">
+                  Seamless payments with popular cryptocurrencies.
+                </h5>
+                <p class="mt-4">
+                  Embrace the future of finance by offering clients and handymen
+                  the flexibility to use major cryptocurrencies for
+                  transactions. Our platform simplifies the payment process,
+                  reducing fees and removing cross-border limitations. Whether
+                  you prefer Bitcoin, Ethereum, or other popular tokens, our
+                  integrated payment gateway is built to make every transaction
+                  effortless, secure, and fast.
+                </p>
+                <ul class="mt-3">
+                  <li>
+                    Support for major cryptocurrencies (BTC, ETH, USDC, etc.).
+                  </li>
+                  <li>Built-in crypto wallet for easy fund management.</li>
+                  <li>Instant confirmations and reduced transaction fees.</li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <!-- Example image placeholder -->
+                <img
+                  src="./static/assets/crypto.jpg"
+                  class="img-fluid rounded"
+                  alt="Crypto Integration"
+                />
+              </div>
             </div>
           </div>
-          <div class="card3d card5">
-            <div class="card feature-card p-3 text-center">
-              <i
-                class="fa-solid fa-person-military-to-person icon icon-roles"
-              ></i>
-              <h5>Flexible Roles</h5>
-              <p class="text-muted">
+        </section>
+
+        <hr />
+        <!-- SECTION 4: Empowering Handymen -->
+        <section class="py-5">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-md-6 order-md-2 mb-4 mb-md-0">
+                <h2 class="mb-3">Empowering Handymen</h2>
+                <h5 class="text-muted">
+                  A platform designed to benefit both clients and professionals.
+                </h5>
+                <p class="mt-4">
+                  Our primary goal is to ensure that handymen thrive while
+                  customers receive top-notch service. We've developed an
+                  intuitive interface that simplifies every step of the job
+                  cycle—from searching for tasks to bidding, scheduling, and
+                  payment. This not only creates a smoother process for service
+                  providers but also fosters a better customer experience. By
+                  bridging the gap between clients and handymen, we empower
+                  talented professionals to grow their businesses and showcase
+                  their expertise.
+                </p>
+                <ul class="mt-3">
+                  <li>Fair fees and transparent commissions.</li>
+                  <li>Ratings and reviews that spotlight quality work.</li>
+                  <li>Tools for showcasing portfolios and skillsets.</li>
+                </ul>
+              </div>
+              <div class="col-md-6 order-md-1">
+                <!-- Example image placeholder -->
+                <img
+                  src="./static/assets/handymen.webp"
+                  class="img-fluid rounded"
+                  alt="Empowering Handymen"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- SECTION 5: Flexible Roles -->
+      <section class="py-5">
+        <div class="container">
+          <div class="row align-items-center">
+            <!-- Left Column -->
+            <div class="col-md-6 mb-4 mb-md-0">
+              <h2 class="mb-3">Flexible Roles</h2>
+              <h5 class="text-muted">
                 Everyone can be both a service provider and a client.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <hr />
-      <!-- SECTION 1: AI-Powered Rating -->
-      <section class="py-5">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-md-6 mb-4 mb-md-0">
-              <h2 class="mb-3">AI-Powered Rating</h2>
-              <h5 class="text-muted">
-                Smart algorithms ensure accurate and fair reviews.
               </h5>
               <p class="mt-4">
-                Our platform leverages cutting-edge machine learning to analyze
-                and moderate user feedback. By automatically detecting
-                fraudulent or manipulated ratings, our AI ensures that every
-                handyman or service provider gets the recognition they truly
-                deserve. Whether you’re looking to hire someone or you’re a
-                professional seeking fair representation, our system maintains
-                an unbiased and transparent standard.
+                One of the most empowering aspects of our platform is that
+                you’re never locked into a single role. Whether you want to
+                offer your skill set as a professional handyman or you need
+                expert help for a project, it’s all available in one place. Our
+                community thrives on this dual nature, allowing people to
+                seamlessly switch between being a provider and being a customer.
               </p>
               <ul class="mt-3">
-                <li>Automated detection of spam and duplicate reviews.</li>
-                <li>Weighted scoring system to favor quality feedback.</li>
-                <li>Adaptive learning to continuously improve accuracy.</li>
-              </ul>
-            </div>
-            <div class="col-md-6">
-              <!-- Example image placeholder -->
-              <img
-                src="./static/assets/social_rating.jpg"
-                class="img-fluid rounded"
-                alt="AI-Powered Rating"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <hr />
-      <!-- SECTION 2: Decentralized & Secure -->
-      <section class="py-5">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-md-6 order-md-2 mb-4 mb-md-0">
-              <h2 class="mb-3">Decentralized &amp; Secure</h2>
-              <h5 class="text-muted">
-                Built on blockchain for transparency and trust.
-              </h5>
-              <p class="mt-4">
-                Gone are the days of centralized control. By implementing
-                blockchain technology, we ensure that data integrity and
-                transparency are at the core of our platform. Every job order,
-                payment transaction, and review is immutably recorded on the
-                ledger, giving both clients and service providers confidence
-                that all information is accurate, unaltered, and fully
-                verifiable.
-              </p>
-              <ul class="mt-3">
-                <li>Immutable records for absolute integrity.</li>
-                <li>Transparent tracking of interactions.</li>
+                <li>Switch roles at any time—no separate account needed.</li>
                 <li>
-                  Prevent tampering or alterations in reviews and ratings.
+                  Expand your earning potential by offering your expertise.
+                </li>
+                <li>
+                  Tap into a diverse pool of services when you need assistance.
                 </li>
               </ul>
             </div>
-            <div class="col-md-6 order-md-1">
-              <!-- Example image placeholder -->
-              <img
-                src="./static/assets/decentralization.jpg"
-                class="img-fluid rounded"
-                alt="Decentralized & Secure"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <hr />
-      <!-- SECTION 3: Crypto Integration -->
-      <section class="py-5">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-md-6 mb-4 mb-md-0">
-              <h2 class="mb-3">Crypto Integration</h2>
-              <h5 class="text-muted">
-                Seamless payments with popular cryptocurrencies.
-              </h5>
-              <p class="mt-4">
-                Embrace the future of finance by offering clients and handymen
-                the flexibility to use major cryptocurrencies for transactions.
-                Our platform simplifies the payment process, reducing fees and
-                removing cross-border limitations. Whether you prefer Bitcoin,
-                Ethereum, or other popular tokens, our integrated payment
-                gateway is built to make every transaction effortless, secure,
-                and fast.
-              </p>
-              <ul class="mt-3">
-                <li>
-                  Support for major cryptocurrencies (BTC, ETH, USDC, etc.).
-                </li>
-                <li>Built-in crypto wallet for easy fund management.</li>
-                <li>Instant confirmations and reduced transaction fees.</li>
-              </ul>
-            </div>
+            <!-- Right Column (Image) -->
             <div class="col-md-6">
-              <!-- Example image placeholder -->
               <img
-                src="./static/assets/crypto.jpg"
+                src="./static/assets/flex.jpg"
                 class="img-fluid rounded"
-                alt="Crypto Integration"
+                alt="Flexible Roles"
               />
             </div>
           </div>
         </div>
       </section>
 
-      <hr />
-      <!-- SECTION 4: Empowering Handymen -->
-      <section class="py-5">
+      <footer class="pt-5 pb-4">
         <div class="container">
-          <div class="row align-items-center">
-            <div class="col-md-6 order-md-2 mb-4 mb-md-0">
-              <h2 class="mb-3">Empowering Handymen</h2>
-              <h5 class="text-muted">
-                A platform designed to benefit both clients and professionals.
-              </h5>
-              <p class="mt-4">
-                Our primary goal is to ensure that handymen thrive while
-                customers receive top-notch service. We've developed an
-                intuitive interface that simplifies every step of the job
-                cycle—from searching for tasks to bidding, scheduling, and
-                payment. This not only creates a smoother process for service
-                providers but also fosters a better customer experience. By
-                bridging the gap between clients and handymen, we empower
-                talented professionals to grow their businesses and showcase
-                their expertise.
+          <div class="row">
+            <!-- Left Column: Company Info -->
+            <div class="col-md-6 mb-4 order-md-1">
+              <h5 class="text-uppercase fw-bold mb-4">Chore</h5>
+              <p>
+                Our mission is to provide a fast, secure, and transparent
+                platform for hiring top-quality handymen services around the
+                globe.
               </p>
-              <ul class="mt-3">
-                <li>Fair fees and transparent commissions.</li>
-                <li>Ratings and reviews that spotlight quality work.</li>
-                <li>Tools for showcasing portfolios and skillsets.</li>
-              </ul>
             </div>
-            <div class="col-md-6 order-md-1">
-              <!-- Example image placeholder -->
-              <img
-                src="./static/assets/handymen.webp"
-                class="img-fluid rounded"
-                alt="Empowering Handymen"
-              />
+
+            <!-- Right Column: Contact -->
+            <div class="col-md-6 mb-4 order-md-2 text-md-end">
+              <h5 class="text-uppercase fw-bold mb-4">Contact</h5>
+              <p><i class="fas fa-home me-2"></i> Abu Dhabi, UAE</p>
+              <p><i class="fas fa-envelope me-2"></i> info@chore.com</p>
+              <p><i class="fas fa-phone me-2"></i> +971 55 123 4567</p>
             </div>
           </div>
         </div>
-      </section>
+
+        <!-- Copyright -->
+        <div class="text-center p-3 mt-4 border-top border-secondary">
+          © 2025 Chore. All rights reserved.
+        </div>
+      </footer>
     </div>
-
-    <!-- SECTION 5: Flexible Roles -->
-    <section class="py-5">
-      <div class="container">
-        <div class="row align-items-center">
-          <!-- Left Column -->
-          <div class="col-md-6 mb-4 mb-md-0">
-            <h2 class="mb-3">Flexible Roles</h2>
-            <h5 class="text-muted">
-              Everyone can be both a service provider and a client.
-            </h5>
-            <p class="mt-4">
-              One of the most empowering aspects of our platform is that you’re
-              never locked into a single role. Whether you want to offer your
-              skill set as a professional handyman or you need expert help for a
-              project, it’s all available in one place. Our community thrives on
-              this dual nature, allowing people to seamlessly switch between
-              being a provider and being a customer.
-            </p>
-            <ul class="mt-3">
-              <li>Switch roles at any time—no separate account needed.</li>
-              <li>Expand your earning potential by offering your expertise.</li>
-              <li>
-                Tap into a diverse pool of services when you need assistance.
-              </li>
-            </ul>
-          </div>
-          <!-- Right Column (Image) -->
-          <div class="col-md-6">
-            <img
-              src="./static/assets/flex.jpg"
-              class="img-fluid rounded"
-              alt="Flexible Roles"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer class="pt-5 pb-4">
-      <div class="container">
-        <div class="row">
-          <!-- Left Column: Company Info -->
-          <div class="col-md-6 mb-4 order-md-1">
-            <h5 class="text-uppercase fw-bold mb-4">Chore</h5>
-            <p>
-              Our mission is to provide a fast, secure, and transparent platform
-              for hiring top-quality handymen services around the globe.
-            </p>
-          </div>
-
-          <!-- Right Column: Contact -->
-          <div class="col-md-6 mb-4 order-md-2 text-md-end">
-            <h5 class="text-uppercase fw-bold mb-4">Contact</h5>
-            <p><i class="fas fa-home me-2"></i> Abu Dhabi, UAE</p>
-            <p><i class="fas fa-envelope me-2"></i> info@chore.com</p>
-            <p><i class="fas fa-phone me-2"></i> +971 55 123 4567</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Copyright -->
-      <div class="text-center p-3 mt-4 border-top border-secondary">
-        © 2025 Chore. All rights reserved.
-      </div>
-    </footer>
   </body>
   <script src="./static/js/index.js"></script>
+  <link href="./static/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="./static/css/all.min.css" rel="stylesheet" />
+  <link href="./static/css/index.css" rel="stylesheet" />
+
+  <script src="./static/js/bootstrap.bundle.min.js"></script>
+  <script src="./static/js/all.min.js"></script>
 </html>

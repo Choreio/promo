@@ -187,51 +187,59 @@ body {
 }
 
 /* Custom Styles for the Loading Overlay and Bar */
-#loading-overlay {
+/* Fullscreen Loading Screen */
+#loading-screen {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 1); /* Optional background */
-  z-index: 9998;
+  width: 100%;
+  height: 100%;
   display: flex;
-  flex-direction: column;
-  justify-items: center;
+  background-color: var(--bs-body-bg);
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+  z-index: 9999;
+  transition: opacity 0.5s ease-out;
 }
 
-#loading-bar-top,
-#loading-bar-bottom {
-  position: absolute;
-  left: 0;
+/* Loading Spinner */
+.loader {
+  width: 64px;
+  height: 64px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 10px;
+}
+
+/* Spinner Animation */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Progress Bar Container */
+.progress-container {
+  width: 80%;
+  max-width: 300px;
+  background: #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+/* Progress Bar */
+.progress-bar {
   width: 0%;
-  height: 5px;
-  background: whitesmoke; /* Green progress bar */
+  height: 10px;
+  background: #3498db;
+  transition: width 0.3s ease-in-out;
 }
 
-#loading-bar-top {
-  top: 0;
-}
-
-#loading-bar-bottom {
-  bottom: 0;
-}
-
-#loading-bar-left,
-#loading-bar-right {
-  position: absolute;
-  top: 0;
-  height: 0%;
-  width: 5px;
-  background: whitesmoke;
-}
-
-#loading-bar-left {
-  left: 0;
-}
-
-#loading-bar-right {
-  right: 0;
+/* Progress Text */
+#progress-text {
+  margin-top: 5px;
+  font-size: 14px;
 }

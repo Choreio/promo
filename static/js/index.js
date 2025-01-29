@@ -436,59 +436,6 @@ function setCarouselWidth() {
 window.addEventListener('resize', setCarouselWidth, true);
 setCarouselWidth();
 
-// -------------------------------------------------------------
-// Real Loading Bar
-const loadingBar = document.getElementById('loading-bar');
-const loadingOverlay = document.getElementById('loading-overlay');
-
-let totalResources = 0;
-let loadedResources = 0;
-
-function updateProgress() {
-  const progress = (loadedResources / totalResources) * 100;
-
-  // Set horizontal bar widths
-  document.getElementById('loading-bar-top').style.width = progress + '%';
-  document.getElementById('loading-bar-bottom').style.width = progress + '%';
-
-  // Set vertical bar heights
-  document.getElementById('loading-bar-left').style.height = progress + '%';
-  document.getElementById('loading-bar-right').style.height = progress + '%';
-
-  if (progress === 100) {
-    // Hide loading frame when fully loaded
-    setTimeout(() => {
-      document.getElementById('loading-overlay').style.display = 'none';
-    }, 500);
-  }
-}
-
-// Track resource loading
-window.addEventListener('load', () => {
-  totalResources = document.images.length + 1; // Count images and page load
-  loadedResources++; // Page itself is loaded
-
-  updateProgress();
-
-  // Track individual image loading
-  const images = document.images;
-  for (const img of images) {
-    if (img.complete) {
-      loadedResources++;
-      updateProgress();
-    } else {
-      img.addEventListener('load', () => {
-        loadedResources++;
-        updateProgress();
-      });
-      img.addEventListener('error', () => {
-        loadedResources++;
-        updateProgress();
-      });
-    }
-  }
-});
-
 // Disable scrolling
 function disableScroll() {
   //console.log('Disabling scroll');
