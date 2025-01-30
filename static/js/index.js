@@ -4,13 +4,17 @@ function setDarkTheme(type) {
   // Set the theme to dark
   const html = document.getElementsByTagName('html')[0];
   const icon = document.getElementById('theme-icon-logo');
-  const button = document.getElementById('redirect-button');
+  const tglIcon = document.getElementById('theme-toggle-icon');
+  const mainButton = document.getElementById('redirect-button');
   // Change the theme icon
   icon.classList.remove('rotate-to-left');
   icon.classList.add('rotate-to-right');
 
   icon.classList.remove('fa-sun');
   icon.classList.add('fa-moon');
+
+  tglIcon.classList.remove('fa-sun');
+  tglIcon.classList.add('fa-moon');
 
   setTimeout(() => {
     // Reset transform-origin to center of the icon itself
@@ -22,8 +26,8 @@ function setDarkTheme(type) {
   }, 500); // Wait for the main animation to complete
 
   // Change the button theme
-  button.classList.remove('btn-dark');
-  button.classList.add('btn-light');
+  mainButton.classList.remove('btn-dark');
+  mainButton.classList.add('btn-light');
 
   // Save theme preference
   html.setAttribute('data-bs-theme', 'dark');
@@ -38,7 +42,8 @@ function setLightTheme(type) {
   // Set the theme to light
   const html = document.getElementsByTagName('html')[0];
   const icon = document.getElementById('theme-icon-logo');
-  const button = document.getElementById('redirect-button');
+  const tglIcon = document.getElementById('theme-toggle-icon');
+  const mainButton = document.getElementById('redirect-button');
 
   // Change the theme icon
   icon.classList.remove('rotate-to-right');
@@ -46,6 +51,9 @@ function setLightTheme(type) {
 
   icon.classList.add('fa-sun');
   icon.classList.remove('fa-moon');
+
+  tglIcon.classList.add('fa-sun');
+  tglIcon.classList.remove('fa-moon');
 
   setTimeout(() => {
     // Reset transform-origin to center of the icon itself
@@ -57,8 +65,8 @@ function setLightTheme(type) {
   }, 500); // Wait for the main animation to complete
 
   // Change the button theme
-  button.classList.remove('btn-light');
-  button.classList.add('btn-dark');
+  mainButton.classList.remove('btn-light');
+  mainButton.classList.add('btn-dark');
 
   // Save theme preference
   html.setAttribute('data-bs-theme', 'light');
@@ -91,7 +99,14 @@ if (currentTheme === 'dark') {
 }
 
 document.getElementById('logo-container').addEventListener('click', () => {
-  const icon = document.getElementById('theme-icon-logo');
+  if (localStorage.getItem('theme') === 'light') {
+    setDarkTheme('toggle');
+  } else {
+    setLightTheme('toggle');
+  }
+});
+
+document.getElementById('theme-toggle-btn').addEventListener('click', () => {
   if (localStorage.getItem('theme') === 'light') {
     setDarkTheme('toggle');
   } else {
