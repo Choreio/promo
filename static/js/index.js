@@ -1,112 +1,101 @@
 const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
 // Theme switcher
+function setDarkTheme(type) {
+  // Set the theme to dark
+  const html = document.getElementsByTagName('html')[0];
+  const icon = document.getElementById('theme-icon-logo');
+  const button = document.getElementById('redirect-button');
+  // Change the theme icon
+  icon.classList.remove('rotate-to-left');
+  icon.classList.add('rotate-to-right');
+
+  icon.classList.remove('fa-sun');
+  icon.classList.add('fa-moon');
+
+  setTimeout(() => {
+    // Reset transform-origin to center of the icon itself
+    icon.style.transformOrigin = 'center';
+
+    // Do an extra rotation to fix orientation
+    console.log('self-rotate');
+    icon.classList.add('self-rotate');
+  }, 500); // Wait for the main animation to complete
+
+  // Change the button theme
+  button.classList.remove('btn-dark');
+  button.classList.add('btn-light');
+
+  // Save theme preference
+  html.setAttribute('data-bs-theme', 'dark');
+  if (type === 'system')
+    if (!localStorage.getItem('theme')) localStorage.setItem('theme', 'dark');
+    else null;
+  else {
+    localStorage.setItem('theme', 'dark');
+  }
+}
+function setLightTheme(type) {
+  // Set the theme to light
+  const html = document.getElementsByTagName('html')[0];
+  const icon = document.getElementById('theme-icon-logo');
+  const button = document.getElementById('redirect-button');
+
+  // Change the theme icon
+  icon.classList.remove('rotate-to-right');
+  icon.classList.add('rotate-to-left');
+
+  icon.classList.add('fa-sun');
+  icon.classList.remove('fa-moon');
+
+  setTimeout(() => {
+    // Reset transform-origin to center of the icon itself
+    icon.style.transformOrigin = 'center';
+
+    // Do an extra rotation to fix orientation
+    console.log('self-rotate');
+    icon.classList.add('self-rotate');
+  }, 500); // Wait for the main animation to complete
+
+  // Change the button theme
+  button.classList.remove('btn-light');
+  button.classList.add('btn-dark');
+
+  // Save theme preference
+  html.setAttribute('data-bs-theme', 'light');
+  if (type === 'system')
+    if (!localStorage.getItem('theme')) localStorage.setItem('theme', 'light');
+    else null;
+  else {
+    localStorage.setItem('theme', 'light');
+  }
+}
+
 if (prefersDarkScheme.matches) {
   // User has dark mode set (either OS or browser-level setting)
   console.log('Dark mode is preferred by the system.');
-
-  // Set the theme to dark
-  document
-    .getElementsByTagName('html')[0]
-    .setAttribute('data-bs-theme', 'dark');
-
-  // Change the theme icon
-  document.getElementById('theme-icon').classList.remove('fa-moon');
-  document.getElementById('theme-icon').classList.add('fa-sun');
-
-  // Change the button theme
-  document.getElementById('redirect-button').classList.remove('btn-dark');
-  document.getElementById('redirect-button').classList.add('btn-light');
-
-  // Save theme preference
-  if (!localStorage.getItem('theme')) localStorage.setItem('theme', 'dark');
+  setDarkTheme('system');
 } else {
   // Light mode or no preference
   console.log('Light mode is preferred by the system.');
-
-  // Set the theme to light
-  document
-    .getElementsByTagName('html')[0]
-    .setAttribute('data-bs-theme', 'light');
-
-  // Change the theme icon
-  document.getElementById('theme-icon').classList.remove('fa-sun');
-  document.getElementById('theme-icon').classList.add('fa-moon');
-
-  // Change the button theme
-  document.getElementById('redirect-button').classList.remove('btn-light');
-  document.getElementById('redirect-button').classList.add('btn-dark');
-
-  // Save theme preference
-  if (!localStorage.getItem('theme')) localStorage.setItem('theme', 'dark');
+  setLightTheme('system');
 }
 
 // Optional: Load previously saved theme from localStorage
 const currentTheme = localStorage.getItem('theme') || 'light';
 if (currentTheme === 'dark') {
   console.log('Dark mode is loaded from local storage.');
-
-  document
-    .getElementsByTagName('html')[0]
-    .setAttribute('data-bs-theme', 'dark');
-
-  document.getElementById('theme-icon').classList.remove('fa-moon');
-  document.getElementById('theme-icon').classList.add('fa-sun');
-
-  document.getElementById('redirect-button').classList.remove('btn-dark');
-  document.getElementById('redirect-button').classList.add('btn-light');
-  // Save theme preference
-  localStorage.setItem('theme', 'dark');
+  setDarkTheme('localStorage');
 } else {
   console.log('Light mode is loaded from local storage.');
-
-  document
-    .getElementsByTagName('html')[0]
-    .setAttribute('data-bs-theme', 'light');
-
-  document.getElementById('theme-icon').classList.remove('fa-sun');
-  document.getElementById('theme-icon').classList.add('fa-moon');
-
-  document.getElementById('redirect-button').classList.remove('btn-light');
-  document.getElementById('redirect-button').classList.add('btn-dark');
-
-  // Save theme preference
-  localStorage.setItem('theme', 'light');
+  setLightTheme('localStorage');
 }
 
-// Listen for toggle button clicks
-document.getElementById('theme-toggle-btn').addEventListener('click', () => {
-  // Toggle theme classes
-  if (
-    document.getElementsByTagName('html')[0].getAttribute('data-bs-theme') ===
-    'light'
-  ) {
-    console.log('Switching to dark mode.');
-
-    document
-      .getElementsByTagName('html')[0]
-      .setAttribute('data-bs-theme', 'dark');
-
-    document.getElementById('theme-icon').classList.remove('fa-moon');
-    document.getElementById('theme-icon').classList.add('fa-sun');
-
-    document.getElementById('redirect-button').classList.remove('btn-dark');
-    document.getElementById('redirect-button').classList.add('btn-light');
-    // Save theme preference
-    localStorage.setItem('theme', 'dark');
+document.getElementById('logo-container').addEventListener('click', () => {
+  const icon = document.getElementById('theme-icon-logo');
+  if (localStorage.getItem('theme') === 'light') {
+    setDarkTheme('toggle');
   } else {
-    console.log('Switching to light mode.');
-
-    document
-      .getElementsByTagName('html')[0]
-      .setAttribute('data-bs-theme', 'light');
-
-    document.getElementById('theme-icon').classList.remove('fa-sun');
-    document.getElementById('theme-icon').classList.add('fa-moon');
-
-    document.getElementById('redirect-button').classList.remove('btn-light');
-    document.getElementById('redirect-button').classList.add('btn-dark');
-    // Save theme preference
-    localStorage.setItem('theme', 'light');
+    setLightTheme('toggle');
   }
 });
 
@@ -464,3 +453,21 @@ function preventArrowKeys(event) {
     event.preventDefault();
   }
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+  const menuBtn = document.getElementById('menuToggle');
+  const dropdownMenu = document.getElementById('dropdownMenu');
+
+  menuBtn.addEventListener('click', function () {
+    this.classList.toggle('active');
+    dropdownMenu.classList.toggle('show');
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', function (e) {
+    if (!menuBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+      menuBtn.classList.remove('active');
+      dropdownMenu.classList.remove('show');
+    }
+  });
+});

@@ -2,6 +2,7 @@ body {
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
+  z-index: 0;
 }
 #main-content {
   transition: opacity 0.5s ease-out;
@@ -53,18 +54,123 @@ body {
   color: lightcoral;
 }
 
-.theme-toggle-btn {
-  position: absolute;
-  right: 0;
-  top: 0;
-  margin: 2px 2px;
+.logo-container {
+  --logo-container-height: 90px;
+  --logo-container-width: 90px;
+
+  --logo-image-height: 60px;
+  --logo-image-widgth: 60px;
+
+  position: relative;
+  height: var(--logo-container-height);
+  width: var(--logo-container-width);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: var(--bs-body-color);
+
+  cursor: pointer;
+  user-select: none;
 }
+
+.logo-container span {
+  font-weight: bold;
+  font-size: 20px;
+  height: 30px;
+
+  cursor: pointer;
+  user-select: none;
+}
+
+.logo-container img {
+  padding: 2px;
+  width: var(--logo-image-height);
+  height: var(--logo-image-widgth);
+
+  cursor: pointer;
+  user-select: none;
+}
+
 .theme-icon {
-  font-size: 24px;
-  color: var(--bs-heading-color);
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  left: 0px;
+  top: 24px;
+  font-size: 12px;
+  transition: transform 0.5s ease-in-out;
+  transform-origin: 45px;
+
+  cursor: pointer;
+  user-select: none;
 }
-.theme-icon:hover {
-  color: var(--bs-primary);
+
+/* Half-dashed line effect */
+.logo-container::after {
+  content: '';
+  position: absolute;
+  top: -2px; /* Adjust to position above */
+  left: 15px;
+  width: 60px;
+  height: 45px; /* Half of the width to create a semi-circle */
+  border-top: 2px dashed var(--bs-body-color); /* Dashed effect */
+  border-radius: 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+/* Hover effect */
+.logo-container:hover::after {
+  opacity: 1;
+}
+
+/* Rotate animation for the half-dashed line */
+@keyframes halfRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+/* Animation when switching to dark mode */
+.rotate-to-right {
+  animation: rotateToRight 0.5s ease-in-out forwards;
+}
+
+/* Animation when switching back to light mode */
+.rotate-to-left {
+  animation: rotateToLeft 0.5s ease-in-out forwards;
+}
+
+@keyframes rotateToRight {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(180deg);
+  }
+}
+
+@keyframes rotateToLeft {
+  0% {
+    transform: rotateZ(180deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
+}
+
+@keyframes selfRotate {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
 }
 
 .media-icon {
@@ -72,7 +178,7 @@ body {
   color: var(--bs-heading-color);
 }
 .media-icon:hover {
-  color: var(--bs-primary);
+  transform: scale(1.1);
 }
 .header {
   padding: 15px;
@@ -84,23 +190,6 @@ body {
   display: flex;
   align-items: center;
   vertical-align: middle;
-}
-.header-left a {
-  height: 80px;
-  width: 80px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.header-left a img {
-  width: 60px;
-  height: 60px;
-}
-.header-left a span {
-  font-weight: bold;
-  font-size: 20px;
-  height: 24px;
-  color: var(--bs-heading-color);
 }
 
 .header-right {
@@ -187,4 +276,63 @@ body {
   transform: rotateY(298deg)
     translateZ(calc(var(--carousel-width) / var(--gap-divider)));
   background: lightseagreen; /* Placeholder color */
+}
+
+.menu-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.menu-btn span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--bs-body-color);
+  transition: all 0.3s ease-in-out;
+}
+
+.menu-btn span:nth-child(2) {
+  margin-left: 2px;
+}
+
+.menu-btn span:nth-child(3) {
+  margin-left: 4px;
+}
+
+/* Transform lines into X when active */
+.menu-btn.active span:nth-child(1) {
+  transform: translateY(4px) rotate(45deg);
+}
+
+.menu-btn.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-btn.active span:nth-child(3) {
+  transform: translateX(-4px) translateY(-4px) rotate(-45deg);
+}
+
+.dropdown-menu {
+  transition:
+    opacity 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
+  transform: scaleY(0);
+  transform-origin: top;
+  opacity: 0;
+  display: block;
+  right: 0;
+  left: auto;
+}
+
+.dropdown-menu.show {
+  display: flex;
+  flex-direction: column;
+  transform: scaleY(1);
+  opacity: 1;
 }

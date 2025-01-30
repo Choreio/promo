@@ -36,23 +36,39 @@
     <div id="main-content" style="visibility: hidden">
       <header class="header container">
         <div class="header-left">
-          <a>
+          <a class="logo-container" id="logo-container">
             <img src="./static/assets/logo.webp" alt="Chore" loading="lazy" />
             <span>Chore</span>
+            <i class="fas fa-moon theme-icon" id="theme-icon-logo"></i>
           </a>
         </div>
         <div class="header-right">
-          <button class="btn">
-            <i class="fa-brands fa-telegram media-icon"></i>
-          </button>
-          <button class="btn">
-            <i class="fa-brands fa-twitter media-icon"></i>
-          </button>
+          <div class="d-none d-md-block">
+            <button class="btn">
+              <i class="fa-brands fa-telegram media-icon"></i>
+            </button>
+            <button class="btn">
+              <i class="fa-brands fa-twitter media-icon"></i>
+            </button>
+          </div>
+          <div class="d-md-none">
+            <div class="dropdown">
+              <button class="btn menu-btn" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+              <ul class="dropdown-menu" id="dropdownMenu">
+                <button class="btn">
+                  <i class="fa-brands fa-telegram media-icon"></i>
+                </button>
+                <button class="btn">
+                  <i class="fa-brands fa-twitter media-icon"></i>
+                </button>
+              </ul>
+            </div>
+          </div>
         </div>
-        <!-- Theme Toggle Button -->
-        <button id="theme-toggle-btn" class="btn theme-toggle-btn">
-          <i class="fas fa-moon theme-icon" id="theme-icon"></i>
-        </button>
       </header>
       <div class="container py-5 text-center overflow-hidden">
         <h1 class="mb-2">Welcome to Chore</h1>
